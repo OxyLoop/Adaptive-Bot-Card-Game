@@ -13,8 +13,12 @@ public class Deck {
     }
 
     private void creatingDeck() {
+        
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Can you enter your file name which contains points of the cards: ");
+            String nameOfFile = sc.nextLine();
         try {
-            Scanner scanner = new Scanner(Paths.get("cardvalues.txt"));
+            Scanner scanner = new Scanner(Paths.get(nameOfFile+".txt"));
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String suit = line.substring(0, 1);
