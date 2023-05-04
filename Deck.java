@@ -22,7 +22,7 @@ public class Deck {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String suit = line.substring(0, 1);
-                String cardFace = line.substring(1, 2);
+                String cardFace = line.substring(1, 3).trim();
                 int point = Integer.parseInt(line.substring(3).trim());
 
                 cards.add(new Card(suit, cardFace, point));
