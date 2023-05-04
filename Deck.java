@@ -1,10 +1,7 @@
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Deck {
@@ -21,9 +18,10 @@ public class Deck {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String suit = line.substring(0, 1);
-                String cardface = line.substring(1, 2);
-                int points = Integer.parseInt(line.substring(3).trim());
-                cards.add(new Card(suit, cardface, points));
+                String cardFace = line.substring(1, 2);
+                int point = Integer.parseInt(line.substring(3).trim());
+
+                cards.add(new Card(suit, cardFace, point));
             }
             scanner.close();
         } 
@@ -35,4 +33,23 @@ public class Deck {
     public ArrayList<Card> getCards() {
         return cards;
     }
+
+    public void shuffle() {
+        Collections.shuffle(cards);
+    }
+
+   public ArrayList<Card> cut(int startIndex) {
+        if (startIndex < 0 || startIndex >= cards.size()) {
+            throw new IllegalArgumentException("Invalid start index: " + startIndex);
+        }
+        ArrayList<Card> cutCards = new ArrayList<>();
+        for(int i = startIndex ; i < cards.size() ; i++ ) {
+            cutCards.add(cards.get(i));
+        }
+        cards.subList(startIndex, cards.size()).clear();
+        cards.addAll(0,cutCards);
+
+        return cutCards;
+   }
+
 }
