@@ -1,18 +1,23 @@
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Board {
-    public ArrayList<Card> boardCards;
+    public static ArrayList<Card> boardCards;
 
     public Board(){
         boardCards = new ArrayList<>();
     }
-    public void addBoardCards(Card cards) {
-        for (int i=1 ; i<5; i++) {
-            Random rd = new Random(52);
-            // boardCards.add(cards.zxcvzxcvxzcvzxcv);
-        }
+    
+    public static void addBoardCards(Card cards) {
+        boardCards.add(cards);
 
     }
+
+    public static Card getTopCardDeck() {
+        int topvalue = boardCards.size(); //boyutu kontrol et
+        return boardCards.get(topvalue);
+
+    }
+
+
     
 }

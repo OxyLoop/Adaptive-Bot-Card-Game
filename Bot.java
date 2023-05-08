@@ -1,17 +1,14 @@
 import java.util.ArrayList;
 
 public abstract class Bot {
-    private ArrayList<Card> Hand;
 
-    public Bot (ArrayList<Card> Hand){
-        this.Hand = Hand;
-    }
+    public abstract void addCard(Card card) ;
 
-    public ArrayList<Card> getHand(){
-        return Hand;
-    }
+    public abstract Card playCard();
 
-    public abstract void play();
+    public abstract ArrayList<Card> getHand() ;
+
+    public abstract ArrayList<Card> getBotTakenCards();
 
 
     

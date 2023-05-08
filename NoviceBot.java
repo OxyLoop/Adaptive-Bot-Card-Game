@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Bot1 {
-    private ArrayList<Card> botHand; // Bot's hand of cards
+public class NoviceBot extends Bot {
+    private static ArrayList<Card> botHand; // Bot's hand of cards
+    private ArrayList<Card> botTakenCards;
     private int score; // Bot's current score
 
-    public  Bot1() {
+    public  NoviceBot() {
         botHand = new ArrayList<Card>();
         score = 0;
     }
@@ -16,7 +17,7 @@ public class Bot1 {
     }
 
     // Method to remove a card from the bot's hand
-    public Card removeCard() {
+    public Card playCard() {
         Random rand = new Random();
         int index = rand.nextInt(botHand.size());
         Card card = botHand.get(index);
@@ -24,24 +25,17 @@ public class Bot1 {
         return card;
     }
 
-    // Method to check if the bot can make a "Pisti" with the last played card
-    public boolean checkPisti(Card lastCard) {
-        boolean pisti = false;
-        for (Card card : botHand) {
-            if (card.getPoints() == lastCard.getPoints()) {
-                pisti = true;
-                break;
-            }
-        }
-        if (pisti) {
-            score += 10;
-        }
-        return pisti;
+    public ArrayList<Card> getHand() {
+        return botHand;
     }
 
     // Method to get the bot's current score
     public int getScore() {
         return score;
+    }
+
+    public ArrayList<Card> getBotTakenCards(){
+        return botTakenCards;
     }
 
     // Method to reset the bot's hand and score

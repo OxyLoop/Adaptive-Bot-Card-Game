@@ -1,9 +1,12 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Test{
     public static void main(String[] args){
-        Deck mainDeck = new Deck();
         Scanner sc = new Scanner(System.in);
+        Deck mainDeck = new Deck();
+        ArrayList<Bot> bots = new ArrayList<Bot>();
+        
 
         System.out.println(mainDeck.getCards().size());
 
@@ -35,15 +38,27 @@ public class Test{
 
         //Asking the game settings
         GameSettings.askPlayerPlay();
-        
         boolean a = GameSettings.getIsPlayerPlay();
         if(a = true){
             GameSettings.nameOfPlayer();
         }
+        int botnumber = GameSettings.howManyPlayers();
+        GameSettings.botLevelChoose(bots);
 
-        GameSettings.howManyPlayers();
 
-        GameSettings.botLevelChoose();
+
+
+        while(true){
+            //if(a==true){
+             //   player.play();
+            //}
+            for(int i=1; i<botnumber; i++){
+                
+            }
+            
+            
+        }
+
 
 
 

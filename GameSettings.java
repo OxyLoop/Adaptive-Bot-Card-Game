@@ -37,22 +37,35 @@ public class GameSettings {
         name = sc.nextLine();
     }
 
-    public static void howManyPlayers(){
+    public static int howManyPlayers(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("How many players will play?");
+        System.out.println("How many bots will play?");
         howManyPlayers = sc.nextInt();
+        return howManyPlayers;
         
     }
 
-    public static void botLevelChoose(){
+    public static void botLevelChoose(ArrayList<Bot> bots){
         Scanner sc = new Scanner(System.in);
         botLevelChoose = new ArrayList<>();
         System.out.println("Choose bots level:");
         System.out.println("1-Novice\t2-Regular\t3-Expert");
         if(isPlayerPlay = true){
-            for(int i=1; i<=howManyPlayers-1;i++){
+            for(int i=1; i<=howManyPlayers;i++){
                 System.out.println("Choose level of "+i+". bot.");
-                botLevelChoose.add(sc.nextInt());
+                int input =sc.nextInt();
+                if(input ==1){
+                    NoviceBot novice = new NoviceBot();
+                    bots.add(novice);
+                }
+                if(input ==2){
+                    RegularBot regular = new RegularBot();
+                    bots.add(regular);
+                }
+                if(input ==3){
+                    ExpertBot expert = new ExpertBot();
+                    bots.add(expert);
+                }
             }
         }
         
