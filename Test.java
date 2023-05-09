@@ -4,6 +4,8 @@ import java.util.Scanner;
 public class Test{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
+        
+        int deckCardCounter = 0;
         Deck mainDeck = new Deck();
         ArrayList<Bot> bots = new ArrayList<Bot>();
         
@@ -45,15 +47,29 @@ public class Test{
         int botnumber = GameSettings.howManyPlayers();
         GameSettings.botLevelChoose(bots);
 
-
+        //dealing cards to board
+        for(int i=0; i<4; i++){
+            Board.addBoardCards(mainDeck.getCards().get(deckCardCounter));
+            Board.addPlayedCards(mainDeck.getCards().get(deckCardCounter));
+            deckCardCounter++;
+        }
 
 
         while(true){
+            //dealing cards to players
+            if(bots.get(bots.size()).getHand().get(1)==null){
+                Deck.dealCards(botnumber,mainDeck,bots,deckCardCounter,a);
+            }
             //if(a==true){
-             //   player.play();
+             //  Card playedcard = player.play();
+             // Board.addBoardCards(playedcard);
+             // Board.addPlayedCards(playedcard);
+
             //}
             for(int i=1; i<botnumber; i++){
-                
+                Card playedcard = bots.get(i).playCard();
+                Board.addBoardCards(playedcard);
+                Board.addPlayedCards(playedcard);
             }
             
             
