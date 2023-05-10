@@ -52,6 +52,7 @@ public class Test{
             Board.addBoardCards(mainDeck.getCards().get(deckCardCounter));
             Board.addPlayedCards(mainDeck.getCards().get(deckCardCounter));
             deckCardCounter++;
+            // MASADAKİ KARTLARIN EN ÜSTÜNDEKİNİ DE EXPERT BOTUN GÖRMESİ LAZIM
         }
 
 

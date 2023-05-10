@@ -24,6 +24,7 @@ public class RegularBot extends Bot {
         for(int i=0; i<botHand.size(); i++){
             if(botHand.get(i).getCardFace().equals(Board.getTopCardDeck().getCardFace())){
                 playCard = botHand.get(i);
+                // botPlayedCards.add(playCard);             *******EXPERT BOT GÖRSÜN DİYE ARRAYLİSTE EKLEDİ
                 botHand.remove(i);
                 score = score + 10;
                 break;
@@ -34,6 +35,7 @@ public class RegularBot extends Bot {
             Random rand = new Random();
             int index = rand.nextInt(botHand.size());
             playCard = botHand.get(index);
+            //botPlayedCards.add(playCard);                 *******EXPERT BOT GÖRSÜN DİYE ARRAYLİSTE EKLEDİ
             botHand.remove(index);
         }
         return playCard;

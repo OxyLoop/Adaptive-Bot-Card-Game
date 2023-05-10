@@ -6,6 +6,7 @@ public class Player {
 
     ArrayList<Card> cardsInHand = new ArrayList<>();        // Player's hand card
     ArrayList<Card> wonCards = new ArrayList<>();       // Player's won cards
+    // ArrayList<Card> playedCards = new ArrayList<>();             ******* EXPERT BOT GÖRMESİ İÇİN
 
     public void setScore(int score) {
         this.score = score;

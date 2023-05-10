@@ -10,6 +10,9 @@ public abstract class Bot {
 
     public abstract ArrayList<Card> getBotTakenCards();
 
+    // public abstract ArrayList<Card> botPlayedCards();
+
+
 
     
 }
