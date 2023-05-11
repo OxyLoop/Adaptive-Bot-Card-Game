@@ -25,6 +25,7 @@ public class NoviceBot extends Bot {
         return playCard;
     }
 
+
     // Method to get the bot's current score
     public int getScore() {
         return score;

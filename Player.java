@@ -51,6 +51,7 @@ public class Player {
     public void calculateScore() {  // calculate user score
     }
 
+
     public void playerPlayCard(Board board) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Your cards are: ");

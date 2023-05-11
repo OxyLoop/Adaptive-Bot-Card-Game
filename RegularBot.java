@@ -47,5 +47,6 @@ public class RegularBot extends Bot {
     public ArrayList<Card> getBotTakenCards(){
         return botTakenCards;
     }
-    
+
+
 }

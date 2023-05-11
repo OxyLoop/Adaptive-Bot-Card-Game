@@ -40,7 +40,6 @@ public class Board {
         return playedCards; 
     }
 
-
     
     public static Card playerCheckPisti(int cardChoose) {
         Card card = null;

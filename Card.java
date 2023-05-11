@@ -13,6 +13,7 @@ public class Card {
         return suit;
     }
 
+
     public String getCardFace() {
         return cardFace;
     }

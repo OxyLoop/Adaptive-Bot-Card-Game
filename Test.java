@@ -62,7 +62,6 @@ public class Test{
         }
 
 
-
         //while(true){
             //dealing cards to players
             if(bots.get(botnumber).getHand().isEmpty() == true){

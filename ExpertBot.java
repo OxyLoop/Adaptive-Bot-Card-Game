@@ -15,6 +15,7 @@ public class ExpertBot extends Bot {
         botHand.add(card);
     }
 
+
     @Override
     public Card botPlayCard(Board board) {
         Card playCard = null;

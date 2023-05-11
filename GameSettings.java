@@ -9,7 +9,6 @@ public class GameSettings {
     private static ArrayList<Bot> botLevelChoose;
 
 
-
     public static boolean askPlayerPlay(){
         Scanner sc = new Scanner(System.in);
         while(true){

@@ -28,7 +28,8 @@ public class Deck {
                 cards.add(new Card(suit, cardFace, point));
             }
             scanner.close();
-            
+
+
         } 
         catch (IOException e) {
             System.out.println("Error reading card values from file");
