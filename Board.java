@@ -6,6 +6,7 @@ public class Board {
 
     public Board(){
         boardCards = new ArrayList<>();
+        playedCards = new ArrayList<>();
     }
     
     public static void addBoardCards(Card cards) {
@@ -18,9 +19,13 @@ public class Board {
     }
 
     public static Card getTopCardDeck() {
-        int topvalue = boardCards.size(); //boyutu kontrol et
+        int topvalue = boardCards.size()-1; //boyutu kontrol et
         return boardCards.get(topvalue);
 
+    }
+
+    public static ArrayList<Card> getBoardCards(){
+        return boardCards; 
     }
 
     public static ArrayList<Card> getPlayedCards(){

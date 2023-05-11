@@ -2,34 +2,26 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class NoviceBot extends Bot {
-    private static ArrayList<Card> botHand; // Bot's hand of cards
-    private ArrayList<Card> botTakenCards;
+    private ArrayList<Card> botTakenCards = new ArrayList<>();
     private int score; // Bot's current score
 
-    public  NoviceBot() {
-        botHand = new ArrayList<Card>();
-        score = 0;
+    public  NoviceBot(String name) {
+        super(name);
     }
 
-    // Method to add a card to the bot's hand
-    public void addCard(Card card) {
-        botHand.add(card);
-    }
+    
 
     // Method to remove a card from the bot's hand
-    public Card playCard() {
+    public Card playCard(Board board) {
         Random rand = new Random();
-        int index = rand.nextInt(botHand.size());
-        Card card = botHand.get(index);
+        int index = rand.nextInt(getHand().size());
+        Card card = getHand().get(index);
         // botPlayedCards.add(card);                         *******EXPERT BOT GÖRSÜN DİYE ARRAYLİSTE EKLEDİ
-        botHand.remove(index);
+        getHand().remove(index);
         return card;
 
     }
 
-    public ArrayList<Card> getHand() {
-        return botHand;
-    }
 
     // Method to get the bot's current score
     public int getScore() {
@@ -42,7 +34,7 @@ public class NoviceBot extends Bot {
 
     // Method to reset the bot's hand and score
     public void reset() {
-        botHand.clear();
+        getHand().clear();
         score = 0;
     }
 }

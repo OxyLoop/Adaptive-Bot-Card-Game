@@ -2,49 +2,39 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class RegularBot extends Bot {
-    private static ArrayList<Card> botHand; // Bot's hand of cards
     private ArrayList<Card> botTakenCards;
     private int score;
     
-    public  RegularBot() {
-        botHand = new ArrayList<Card>();
-        score = 0;
+    public  RegularBot(String name) {
+        super(name);
+        this.botTakenCards = new ArrayList<Card>();
     }
 
-    @Override
-    public void addCard(Card card) {
-        botHand.add(card);
-    }
-
-    @Override
-    public Card playCard() {
+ 
+    public Card playCard(Board board) {
         Card playCard = null;
 
         //check pişti
-        for(int i=0; i<botHand.size(); i++){
-            if(botHand.get(i).getCardFace().equals(Board.getTopCardDeck().getCardFace())){
-                playCard = botHand.get(i);
-                // botPlayedCards.add(playCard);             *******EXPERT BOT GÖRSÜN DİYE ARRAYLİSTE EKLEDİ
-                botHand.remove(i);
-                score = score + 10;
-                break;
+        if(Board.getTopCardDeck() != null){
+            for(int i=0; i<getHand().size(); i++){
+                if(getHand().get(i).getCardFace().equals(Board.getTopCardDeck().getCardFace())){
+                    playCard = getHand().get(i);
+                    getHand().remove(i);
+                    score = score + 10;
+                    break;
+                }
             }
         }
         //random play
         if(playCard !=null){
             Random rand = new Random();
-            int index = rand.nextInt(botHand.size());
-            playCard = botHand.get(index);
+            int index = rand.nextInt(getHand().size());
+            playCard = getHand().get(index);
             //botPlayedCards.add(playCard);                 *******EXPERT BOT GÖRSÜN DİYE ARRAYLİSTE EKLEDİ
-            botHand.remove(index);
+            getHand().remove(index);
         }
         return playCard;
         
-    }
-
-    @Override
-    public ArrayList<Card> getHand() {
-        return botHand;
     }
 
     public ArrayList<Card> getBotTakenCards(){

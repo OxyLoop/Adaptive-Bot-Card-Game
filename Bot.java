@@ -1,18 +1,28 @@
 import java.util.ArrayList;
 
 public abstract class Bot {
+    protected String name;
+    private ArrayList<Card> botHand;
 
-    public abstract void addCard(Card card) ;
+    public Bot(String name) {
+        this.name = name;
+        this.botHand = new ArrayList<Card>();
+    }
+    
+    public String getName(){
+        return name;
+    }
 
-    public abstract Card playCard();
+    public void addCard(Card card) {
+        botHand.add(card);
+    }
 
-    public abstract ArrayList<Card> getHand() ;
+    public abstract Card playCard(Board board);
+
+    public ArrayList<Card> getHand() {
+        return botHand;
+    }
 
     public abstract ArrayList<Card> getBotTakenCards();
-
-    // public abstract ArrayList<Card> botPlayedCards();
-
-
-
     
 }

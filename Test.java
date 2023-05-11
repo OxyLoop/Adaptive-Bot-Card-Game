@@ -5,14 +5,12 @@ public class Test{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         
-        int deckCardCounter = 0;
         Deck mainDeck = new Deck();
+        Board board = new Board();
         ArrayList<Bot> bots = new ArrayList<Bot>();
         
 
-        System.out.println(mainDeck.getCards().size());
-
-        //System.out.println(mainDeck.getCards().size());
+        System.out.println(mainDeck.getCards().size()); //test
 
         System.out.println("Original deck is: " );
         for(Card card: mainDeck.cards) {
@@ -39,53 +37,70 @@ public class Test{
         }
 
         //Asking the game settings
-        GameSettings.askPlayerPlay();
-        boolean a = GameSettings.getIsPlayerPlay();
-        if(a = true){
+        boolean a = GameSettings.askPlayerPlay();
+        if(a == true){
             GameSettings.nameOfPlayer();
         }
-        int botnumber = GameSettings.howManyPlayers();
+        int botnumber = GameSettings.howManyPlayers() - 1 ;
         GameSettings.botLevelChoose(bots);
 
         //dealing cards to board
         for(int i=0; i<4; i++){
-            Board.addBoardCards(mainDeck.getCards().get(deckCardCounter));
-            Board.addPlayedCards(mainDeck.getCards().get(deckCardCounter));
-            deckCardCounter++;
-            // MASADAKİ KARTLARIN EN ÜSTÜNDEKİNİ DE EXPERT BOTUN GÖRMESİ LAZIM
+            Board.addBoardCards(mainDeck.getCards().get(0));
+            mainDeck.getCards().remove(0);
+            Board.addPlayedCards(mainDeck.getCards().get(0));
+        }
+
+        System.out.println("Board is: ");
+        for(Card card: Board.getBoardCards()) {
+            System.out.println(card.cardNameString());
+        }
+        
+        System.out.println("Dealed board deck is: ");
+        for(Card card: mainDeck.cards) {
+            System.out.println(card.cardNameString());
         }
 
 
-        while(true){
+
+        //while(true){
             //dealing cards to players
-            if(bots.get(bots.size()).getHand().get(1)==null){
-                Deck.dealCards(botnumber,mainDeck,bots,deckCardCounter,a);
+            if(bots.get(botnumber).getHand().isEmpty() == true){
+                Deck.dealCards(botnumber,mainDeck,bots,a);
             }
+
+            for(Bot deneme: bots) {
+                System.out.println(deneme);
+            }
+
+            System.out.println("1. bot hand: ");
+            for(Card card: bots.get(0).getHand()) {
+                System.out.println(card.cardNameString());
+            }
+            System.out.println("2. bot hand: ");
+            for(Card card: bots.get(1).getHand()) {
+                System.out.println(card.cardNameString());
+            }
+            //System.out.println("3. bot hand: ");
+            //for(Card card: bots.get(2).getHand()) {
+               // System.out.println(card.cardNameString());
+            //}
+
+
             //if(a==true){
-             //  Card playedcard = player.play();
+             // Card playedcard = player.play();
              // Board.addBoardCards(playedcard);
              // Board.addPlayedCards(playedcard);
 
             //}
             for(int i=1; i<botnumber; i++){
-                Card playedcard = bots.get(i).playCard();
+                Card playedcard = bots.get(i).playCard(board);
                 Board.addBoardCards(playedcard);
                 Board.addPlayedCards(playedcard);
             }
             
             
-        }
-
-
-
-
-
-
-        //play turns
-        //while(true){
-
-        
-
+        //}
 
     }
 }

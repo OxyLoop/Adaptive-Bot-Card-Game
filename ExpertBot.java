@@ -6,9 +6,8 @@ public class ExpertBot extends Bot {
     private ArrayList<Card> botTakenCards;
     private int score;
     
-    public  ExpertBot() {
-        botHand = new ArrayList<Card>();
-        score = 0;
+    public  ExpertBot(String name) {
+        super(name);
     }
 
     @Override
@@ -17,17 +16,19 @@ public class ExpertBot extends Bot {
     }
 
     @Override
-    public Card playCard() {
+    public Card playCard(Board board) {
         Card playCard = null;
 
         //check pişti
-        for(int i=0; i<botHand.size(); i++){
-            if(botHand.get(i).getCardFace().equals(Board.getTopCardDeck().getCardFace())){
-                playCard = botHand.get(i);
-                // botPlayedCards.add(playCard);                  *******EXPERT BOT GÖRSÜN DİYE ARRAYLİSTE EKLEDİ
-                botHand.remove(i);
-                score = score + 10;
-                break;
+        if(Board.getTopCardDeck() != null){
+            for(int i=0; i<botHand.size(); i++){
+                if(botHand.get(i).getCardFace().equals(Board.getTopCardDeck().getCardFace())){
+                    playCard = botHand.get(i);
+                    // botPlayedCards.add(playCard);                  *******EXPERT BOT GÖRSÜN DİYE ARRAYLİSTE EKLEDİ
+                    botHand.remove(i);
+                    score = score + 10;
+                    break;
+                }
             }
         }
 
@@ -54,6 +55,10 @@ public class ExpertBot extends Bot {
 
     public ArrayList<Card> getBotTakenCards(){
         return botTakenCards;
+    }
+
+    public String getName() {
+        return name;
     }
     
 }

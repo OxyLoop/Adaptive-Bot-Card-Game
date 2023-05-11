@@ -28,7 +28,7 @@ public class Deck {
                 cards.add(new Card(suit, cardFace, point));
             }
             scanner.close();
-            sc.close();
+            
         } 
         catch (IOException e) {
             System.out.println("Error reading card values from file");
@@ -57,15 +57,15 @@ public class Deck {
         return cutCards;
    }
 
-   public static void dealCards(int botnumber, Deck mainDeck, ArrayList<Bot> bots, int deckCardCounter,boolean a){
+   public static void dealCards(int botnumber, Deck mainDeck, ArrayList<Bot> bots, boolean a){
     for(int i=0; i<4; i++){
-        if(a=true){
+        if(a==true){
             //player.addCard(mainDeck.getCards().get(deckCardCounter));
             //deckCardCounter++;
         }
-        for(int j=1; j<botnumber; j++){
-            bots.get(i).addCard(mainDeck.getCards().get(deckCardCounter));
-            deckCardCounter++;
+        for(int j=0; j<botnumber+1; j++){
+            bots.get(j).addCard(mainDeck.getCards().get(0));
+            mainDeck.getCards().remove(0);
         }
     }
    }
