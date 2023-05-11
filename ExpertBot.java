@@ -16,7 +16,7 @@ public class ExpertBot extends Bot {
     }
 
     @Override
-    public Card playCard(Board board) {
+    public Card botPlayCard(Board board) {
         Card playCard = null;
 
         //check pişti

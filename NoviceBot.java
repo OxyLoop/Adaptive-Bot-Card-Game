@@ -5,22 +5,25 @@ public class NoviceBot extends Bot {
     private ArrayList<Card> botTakenCards = new ArrayList<>();
     private int score; // Bot's current score
 
-    public  NoviceBot(String name) {
+    public NoviceBot(String name) {
         super(name);
     }
 
-    
-
-    // Method to remove a card from the bot's hand
-    public Card playCard(Board board) {
+    //novice bot play random
+    public Card botPlayCard(Board board) {
         Random rand = new Random();
-        int index = rand.nextInt(getHand().size());
-        Card card = getHand().get(index);
-        getHand().remove(index);
-        return card;
-
+        int chosenCard = rand.nextInt(getHand().size());
+        Card playCard = getHand().get(chosenCard);
+        addCardToBoard(playCard);
+        if(playCard.getCardFace().equals(Board.getTopCardDeck().getCardFace())) {
+            botTakenCards.addAll(Board.getBoardCards());                //kartları kazandıklarına topladı
+            for(int i=0; i<Board.getBoardCards().size(); i++) {
+                // MASA BOŞALDIĞI İÇİN ORTADAKİ BÜTÜN KARTLARI SİLMEK LAZIM
+            }
+        }
+        getHand().remove(chosenCard);
+        return playCard;
     }
-
 
     // Method to get the bot's current score
     public int getScore() {

@@ -16,13 +16,20 @@ public abstract class Bot {
     public void addCard(Card card) {
         botHand.add(card);
     }
-
-    public abstract Card playCard(Board board);
+    public void addCardToBoard(Card card) {
+        Board.getBoardCards().add(card);
+    }
+    public abstract Card botPlayCard(Board board);
 
     public ArrayList<Card> getHand() {
         return botHand;
     }
 
     public abstract ArrayList<Card> getBotTakenCards();
+
+
+
+
+
     
 }

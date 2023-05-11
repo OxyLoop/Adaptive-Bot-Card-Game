@@ -46,7 +46,7 @@ public class Test{
 
         //dealing cards to board
         for(int i=0; i<4; i++){
-            Board.addBoardCards(mainDeck.getCards().get(0));
+            Board.addCardToBoard(mainDeck.getCards().get(0));
             mainDeck.getCards().remove(0);
             Board.addPlayedCards(mainDeck.getCards().get(0));
         }
@@ -94,8 +94,8 @@ public class Test{
 
             //}
             for(int i=1; i<botnumber; i++){
-                Card playedcard = bots.get(i).playCard(board);
-                Board.addBoardCards(playedcard);
+                Card playedcard = bots.get(i).botPlayCard(board);
+                Board.addCardToBoard(playedcard);
                 Board.addPlayedCards(playedcard);
             }
             
