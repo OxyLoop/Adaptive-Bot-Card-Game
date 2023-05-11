@@ -30,7 +30,6 @@ public class RegularBot extends Bot {
             Random rand = new Random();
             int index = rand.nextInt(getHand().size());
             playCard = getHand().get(index);
-            //botPlayedCards.add(playCard);                 *******EXPERT BOT GÖRSÜN DİYE ARRAYLİSTE EKLEDİ
             getHand().remove(index);
         }
         return playCard;

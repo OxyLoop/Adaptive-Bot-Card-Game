@@ -16,7 +16,6 @@ public class NoviceBot extends Bot {
         Random rand = new Random();
         int index = rand.nextInt(getHand().size());
         Card card = getHand().get(index);
-        // botPlayedCards.add(card);                         *******EXPERT BOT GÖRSÜN DİYE ARRAYLİSTE EKLEDİ
         getHand().remove(index);
         return card;
 
