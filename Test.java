@@ -12,31 +12,12 @@ public class Test{
         
 
         System.out.println(mainDeck.getCards().size()); //test
-
-        System.out.println("Original deck is: " );
-        for(Card card: mainDeck.cards) {
-            System.out.println(card.cardNameString());
-        }
-
-        System.out.println("____________________________________");
-
+        //shuffing and cutting
         mainDeck.shuffle();
-        System.out.println("Shuffled deck is: ");
-        for(Card card: mainDeck.cards) {
-            System.out.println(card.cardNameString());
-        }
-
-        System.out.println("____________________________________");
-
         System.out.println("Can you enter an index that you want to cut: ");
         int cutBeginIndex = sc.nextInt();
-
         mainDeck.cut(cutBeginIndex);
-        System.out.println("Cut deck is: ");
-        for(Card card: mainDeck.cards) {
-            System.out.println(card.cardNameString());
-        }
-
+        
         //Asking the game settings
         boolean a = GameSettings.askPlayerPlay();
         if(a == true){
@@ -82,7 +63,8 @@ public class Test{
                 System.out.println(card.cardNameString());
             }
             //writing top card on board
-            System.out.println(Board.getBoardCards().size());
+            System.out.println("Number of cards on board: " + Board.getBoardCards().size());
+            System.out.println("Number of played cards: " + Board.getPlayedCards().size());
             System.out.println("Top card on the board:");
             System.out.println(Board.getTopCardDeck().cardNameString());
 

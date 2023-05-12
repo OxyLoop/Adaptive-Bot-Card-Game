@@ -44,7 +44,8 @@ public class Board {
     public static void botPlayedCard(Card playedCard, Bot playedBot) {
 
         //pişti yaparsa
-        if(Board.getBoardCards().size() == 1 || Board.getTopCardDeck().getCardFace().equals(playedCard.getCardFace())) {
+        if(Board.getBoardCards().size() == 1 && Board.getTopCardDeck().getCardFace().equals(playedCard.getCardFace())) {
+            System.out.println("Bot make PİŞTİ");
             addCardToBoard(playedCard);
             addPlayedCards(playedCard);                
             playedBot.getBotTakenCards().addAll(boardCards);
@@ -54,13 +55,15 @@ public class Board {
         }
         //joker oynarsa
         if(playedCard.getCardFace() == "J") {
+            System.out.println("Bot used JOKER card and take all cards on the board");
             addCardToBoard(playedCard);
             addPlayedCards(playedCard);                
             playedBot.getBotTakenCards().addAll(boardCards);
             removeCardsFromBoard();             
         }
         //masa dolu ve atıp aldıysa
-        if (Board.getTopCardDeck().getCardFace().equals(playedCard.getCardFace())) {
+        if (Board.getBoardCards().size() != 1 && Board.getTopCardDeck().getCardFace().equals(playedCard.getCardFace())) {
+            System.out.println("Bot took all cards on the board using same card");
             addCardToBoard(playedCard);
             addPlayedCards(playedCard);                
             playedBot.getBotTakenCards().addAll(boardCards);
@@ -77,7 +80,8 @@ public class Board {
     public void playerPlayedCard(Card playedCard, Player player) {
 
         //pişti yaparsa
-        if(Board.getBoardCards().size() == 1 || Board.getTopCardDeck().getCardFace().equals(playedCard.getCardFace())) {
+        if(Board.getBoardCards().size() == 1 && Board.getTopCardDeck().getCardFace().equals(playedCard.getCardFace())) {
+            System.out.println("You make PİŞTİ");
             addCardToBoard(playedCard);
             addPlayedCards(playedCard);                
             Player.getWonCards().addAll(boardCards);
@@ -87,13 +91,15 @@ public class Board {
         }
         //joker oynarsa
         if(playedCard.getCardFace() == "J") {
+            System.out.println("You use your JOKER card and take all cards on the board");
             addCardToBoard(playedCard);
             addPlayedCards(playedCard);                
             Player.getWonCards().addAll(boardCards);
             removeCardsFromBoard();             
         }
         //masa dolu ve atıp aldıysa
-        if (Board.getTopCardDeck().getCardFace().equals(playedCard.getCardFace())) {
+        if (Board.getBoardCards().size() != 1 && Board.getTopCardDeck().getCardFace().equals(playedCard.getCardFace())) {
+            System.out.println("You took all cards on the board using same card");
             addCardToBoard(playedCard);
             addPlayedCards(playedCard);                
             Player.getWonCards().addAll(boardCards);
@@ -106,5 +112,5 @@ public class Board {
         }
         
     }
-
+    
 }
