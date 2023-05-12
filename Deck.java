@@ -13,7 +13,7 @@ public class Deck {
     }
 
     private void creatingDeck() {
-        
+        //loop ekle
             Scanner sc = new Scanner(System.in);
             System.out.println("Can you enter your file name which contains points of the cards: ");
             String nameOfFile = sc.nextLine();
@@ -28,8 +28,7 @@ public class Deck {
                 cards.add(new Card(suit, cardFace, point));
             }
             scanner.close();
-
-
+            
         } 
         catch (IOException e) {
             System.out.println("Error reading card values from file");
@@ -61,8 +60,8 @@ public class Deck {
    public static void dealCards(int botnumber, Deck mainDeck, ArrayList<Bot> bots, boolean a){
     for(int i=0; i<4; i++){
         if(a==true){
-            //player.addCard(mainDeck.getCards().get(deckCardCounter));
-            //deckCardCounter++;
+            Player.addCardToHand(mainDeck.getCards().get(0));
+            mainDeck.getCards().remove(0);
         }
         for(int j=0; j<botnumber+1; j++){
             bots.get(j).addCard(mainDeck.getCards().get(0));

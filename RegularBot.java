@@ -17,7 +17,7 @@ public class RegularBot extends Bot {
             for(int i=0; i<getHand().size(); i++){
                 if(getHand().get(i).getCardFace().equals(Board.getTopCardDeck().getCardFace())){
                     playCard = getHand().get(i);
-                    addCardToBoard(playCard);
+                    Board.addCardToBoard(playCard);
                     botTakenCards.addAll(Board.getBoardCards());          //kartları topladı
                     for(int j=0; j<Board.getBoardCards().size(); j++) {
                         // MASA BOŞALDIĞI İÇİN ORTADAKİ BÜTÜN KARTLARI SİLMEK LAZIM
@@ -32,7 +32,7 @@ public class RegularBot extends Bot {
             Random rand = new Random();
             int choosenCard = rand.nextInt(getHand().size());
             playCard = getHand().get(choosenCard);
-            addCardToBoard(playCard);
+            Board.addCardToBoard(playCard);
             if(getHand().get(choosenCard).getCardFace().equals(Board.getTopCardDeck().getCardFace())) {
                 botTakenCards.addAll(Board.getBoardCards());
                 for(int i=0; i<Board.getBoardCards().size(); i++) {

@@ -5,6 +5,7 @@ public class Player {
     private String name;
     private int score;
     private int playerPistiCounter;
+
     static ArrayList<Card> playerHand = new ArrayList<>();        // Player's hand card
     static ArrayList<Card> playerWonCards = new ArrayList<>();       // Player's won cards
 
@@ -33,10 +34,21 @@ public class Player {
     public Player(String name) {
         this.name = name;
     }
-    public static ArrayList<Card> getPlayerHand() {
+    public ArrayList<Card> getPlayerHand() {
         return playerHand;
     }
-
+    public static ArrayList<Card> getWonCards() {
+        return playerWonCards;
+    }
+    public static void addCardToHand(Card card) {
+        playerHand.add(card);
+    }
+    
+    public void addCardToWon(Card card) {
+        for(int i=0 ; i<Board.getBoardCards().size(); i++) {
+            playerWonCards.add(card);
+        }
+    }
 
 
     public void showCards() {  //shows player cards
@@ -44,31 +56,26 @@ public class Player {
 
         for (int i = 0; i < playerHand.size(); i++) {
 
-            System.out.println(i + " " + playerHand.get(i).toString());
+            System.out.println(i+1 + " " + playerHand.get(i).cardNameString());
         }
     }
 
     public void calculateScore() {  // calculate user score
     }
 
-
-    public void playerPlayCard(Board board) {
+    public Card playerPlayCard() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Your cards are: ");
         showCards();
         System.out.println("Enter a number of card that you want to play: ");
-        int cardChoose = sc.nextInt();
-        Card card;
+        int cardChoose = sc.nextInt()-1;
+        Card playedCard = getPlayerHand().get(cardChoose);
+        getPlayerHand().remove(cardChoose);
+        return playedCard;
+        
+    }
 
-        //pişti olursa
-        Board.playerCheckPisti(cardChoose);
-        //joker oynarsa
-        Board.playedJoker(cardChoose);
-        //masa boşsa veya ortadakiyle aynı kart OYNAMAZSA
-        Board.playedSame(cardChoose);
-        //ortadakiyle aynı kart oynarsa
-        Board.playedDifferent(cardChoose);
-
+    public static void addCard(Card card) {
     }
 
 

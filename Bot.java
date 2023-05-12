@@ -16,9 +16,7 @@ public abstract class Bot {
     public void addCard(Card card) {
         botHand.add(card);
     }
-    public void addCardToBoard(Card card) {
-        Board.getBoardCards().add(card);
-    }
+    
     public abstract Card botPlayCard(Board board);
 
     public ArrayList<Card> getHand() {

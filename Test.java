@@ -8,6 +8,7 @@ public class Test{
         Deck mainDeck = new Deck();
         Board board = new Board();
         ArrayList<Bot> bots = new ArrayList<Bot>();
+        Player human = new Player(null);
         
 
         System.out.println(mainDeck.getCards().size()); //test
@@ -62,9 +63,9 @@ public class Test{
         }
 
 
-        //while(true){
+        while(true){
             //dealing cards to players
-            if(bots.get(botnumber).getHand().isEmpty() == true){
+            if(bots.get(botnumber-1).getHand().isEmpty() == true){
                 Deck.dealCards(botnumber,mainDeck,bots,a);
             }
 
@@ -80,26 +81,19 @@ public class Test{
             for(Card card: bots.get(1).getHand()) {
                 System.out.println(card.cardNameString());
             }
-            //System.out.println("3. bot hand: ");
-            //for(Card card: bots.get(2).getHand()) {
-               // System.out.println(card.cardNameString());
-            //}
 
 
-            //if(a==true){
-             // Card playedcard = player.play();
-             // Board.addBoardCards(playedcard);
-             // Board.addPlayedCards(playedcard);
-
-            //}
+            if(a==true){
+                Card playedcard = human.playerPlayCard();
+                Board.playerPlayedCard(playedcard, null);
+            }
             for(int i=1; i<botnumber; i++){
                 Card playedcard = bots.get(i).botPlayCard(board);
-                Board.addCardToBoard(playedcard);
-                Board.addPlayedCards(playedcard);
+                Board.botPlayedCard(playedcard,bots.get(i));
             }
             
             
-        //}
+        }
 
     }
 }

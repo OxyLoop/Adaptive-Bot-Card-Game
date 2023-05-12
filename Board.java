@@ -41,48 +41,70 @@ public class Board {
     }
 
     
-    public static Card playerCheckPisti(int cardChoose) {
-        Card card = null;
-        if(Board.getBoardCards().size() == 1 || Board.getTopCardDeck().getCardFace().equals(Player.getPlayerHand().get(cardChoose).getCardFace())) {
-            card = Player.getPlayerHand().get(cardChoose);
-            addCardToBoard(card);
-            addCardToWon(card);                 //kartları topla
-            Player.getPlayerHand().remove(cardChoose);
-            removeCardsFromBoard();             //masadaki kartlar silindi
-        }
-        return card;
-    }
+    public static void botPlayedCard(Card playedCard, Bot playedBot) {
 
-    public static Card playedJoker(int cardChoose) {
-        Card card = null;
-        if(Player.getPlayerHand().get(cardChoose).getCardFace() == "J") {
-            card = Player.getPlayerHand().get(cardChoose);
-            addCardToBoard(card);
-            addCardToWon(card);                 //kartları topla
-            Player.getPlayerHand().remove(cardChoose);
-            removeCardsFromBoard();             //masadaki kartlar silindi
+        //pişti yaparsa
+        if(Board.getBoardCards().size() == 1 || Board.getTopCardDeck().getCardFace().equals(playedCard.getCardFace())) {
+            addCardToBoard(playedCard);
+            addPlayedCards(playedCard);                
+            playedBot.getBotTakenCards().addAll(boardCards);
+            //skore ekle
+
+            removeCardsFromBoard();             
         }
-        return card;
+        //joker oynarsa
+        if(playedCard.getCardFace() == "J") {
+            addCardToBoard(playedCard);
+            addPlayedCards(playedCard);                
+            playedBot.getBotTakenCards().addAll(boardCards);
+            removeCardsFromBoard();             
+        }
+        //masa dolu ve atıp aldıysa
+        if (Board.getTopCardDeck().getCardFace().equals(playedCard.getCardFace())) {
+            addCardToBoard(playedCard);
+            addPlayedCards(playedCard);                
+            playedBot.getBotTakenCards().addAll(boardCards);
+            removeCardsFromBoard();         
+        }
+        //masa boş ve eşit değilse
+        if (Board.getBoardCards().size() == 0 && !(Board.getTopCardDeck().getCardFace().equals(playedCard.getCardFace()))) {      // ! işareti not equal için
+            addCardToBoard(playedCard);
+            addPlayedCards(playedCard);
+        }
+        
     }
-    public static Card playedDifferent(int cardChoose) {
-        Card card = null;
-        if (Board.getBoardCards().size() == 0 || !(Board.getTopCardDeck().getCardFace().equals(Player.getPlayerHand().get(cardChoose).getCardFace()))) {      // ! işareti not equal için
-            card = Player.getPlayerHand().get(cardChoose);
-            addCardToBoard(card);
-            Player.getPlayerHand().remove(cardChoose);
+    
+    public static void playerPlayedCard(Card playedCard, Player player) {
+
+        //pişti yaparsa
+        if(Board.getBoardCards().size() == 1 || Board.getTopCardDeck().getCardFace().equals(playedCard.getCardFace())) {
+            addCardToBoard(playedCard);
+            addPlayedCards(playedCard);                
+            Player.getWonCards().addAll(boardCards);
+            //skore ekle
+
+            removeCardsFromBoard();             
         }
-        return card;
-    }
-    public static Card playedSame(int cardChoose) {
-        Card card = null;
-        if (Board.getTopCardDeck().getCardFace().equals(Player.getPlayerHand().get(cardChoose).getCardFace())) {
-            card = Player.getPlayerHand().get(cardChoose);
-            addCardToBoard(card);
-            addCardToWon(card);             //kartları topla
-            Player.getPlayerHand().remove(cardChoose);
-            removeCardsFromBoard();         //masadaki kartlar silindi
+        //joker oynarsa
+        if(playedCard.getCardFace() == "J") {
+            addCardToBoard(playedCard);
+            addPlayedCards(playedCard);                
+            Player.getWonCards().addAll(boardCards);
+            removeCardsFromBoard();             
         }
-        return card;
+        //masa dolu ve atıp aldıysa
+        if (Board.getTopCardDeck().getCardFace().equals(playedCard.getCardFace())) {
+            addCardToBoard(playedCard);
+            addPlayedCards(playedCard);                
+            Player.getWonCards().addAll(boardCards);
+            removeCardsFromBoard();         
+        }
+        //masa boş ve eşit değilse
+        if (Board.getBoardCards().size() == 0 && !(Board.getTopCardDeck().getCardFace().equals(playedCard.getCardFace()))) {      // ! işareti not equal için
+            addCardToBoard(playedCard);
+            addPlayedCards(playedCard);
+        }
+        
     }
 
 }

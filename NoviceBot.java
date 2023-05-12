@@ -14,13 +14,7 @@ public class NoviceBot extends Bot {
         Random rand = new Random();
         int chosenCard = rand.nextInt(getHand().size());
         Card playCard = getHand().get(chosenCard);
-        addCardToBoard(playCard);
-        if(playCard.getCardFace().equals(Board.getTopCardDeck().getCardFace())) {
-            botTakenCards.addAll(Board.getBoardCards());                //kartları kazandıklarına topladı
-            for(int i=0; i<Board.getBoardCards().size(); i++) {
-                // MASA BOŞALDIĞI İÇİN ORTADAKİ BÜTÜN KARTLARI SİLMEK LAZIM
-            }
-        }
+        Board.addCardToBoard(playCard);
         getHand().remove(chosenCard);
         return playCard;
     }
