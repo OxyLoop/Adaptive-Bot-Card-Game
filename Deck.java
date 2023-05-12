@@ -57,14 +57,10 @@ public class Deck {
         return cutCards;
    }
 
-   public static void dealCards(int botnumber, Deck mainDeck, ArrayList<Bot> bots, boolean a){
+   public static void dealCards(int playerNumber, Deck mainDeck, ArrayList<Players> players, boolean a){
     for(int i=0; i<4; i++){
-        if(a==true){
-            Player.addCardToHand(mainDeck.getCards().get(0));
-            mainDeck.getCards().remove(0);
-        }
-        for(int j=0; j<botnumber; j++){
-            bots.get(j).addCard(mainDeck.getCards().get(0));
+        for(int j=0; j<playerNumber; j++){
+            players.get(j).addCard(mainDeck.getCards().get(0));
             mainDeck.getCards().remove(0);
         }
     }

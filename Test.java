@@ -7,8 +7,7 @@ public class Test{
         
         Deck mainDeck = new Deck();
         Board board = new Board();
-        ArrayList<Bot> bots = new ArrayList<Bot>();
-        Player human = new Player(null);
+        ArrayList<Players> players = new ArrayList<Players>();
         
 
         System.out.println(mainDeck.getCards().size()); //test
@@ -21,23 +20,24 @@ public class Test{
         //Asking the game settings
         boolean a = GameSettings.askPlayerPlay();
         if(a == true){
-            GameSettings.nameOfPlayer();
+            String playerName = GameSettings.nameOfPlayer();
+            Human human = new Human(playerName);
+            players.add(human);
         }
-        int botnumber = GameSettings.howManyPlayers();
-        GameSettings.botLevelChoose(bots);
+        int playersNumber = GameSettings.howManyBots() +1;
+        GameSettings.botLevelChoose(players);
 
         //dealing cards to board
         for(int i=0; i<4; i++){
             Board.addCardToBoard(mainDeck.getCards().get(0));
-            mainDeck.getCards().remove(0);
             Board.addPlayedCards(mainDeck.getCards().get(0));
+            mainDeck.getCards().remove(0);
         }
 
         System.out.println("Board is: ");
-        for(Card card: Board.getBoardCards()) {
+        for(Card card: board.getBoardCards()) {
             System.out.println(card.cardNameString());
         }
-        
         System.out.println("Dealed board deck is: ");
         for(Card card: mainDeck.cards) {
             System.out.println(card.cardNameString());
@@ -46,36 +46,39 @@ public class Test{
 
         while(true){
             //dealing cards to players
-            if(bots.get(botnumber-1).getHand().isEmpty() == true){
-                Deck.dealCards(botnumber,mainDeck,bots,a);
-            }
-
-            for(Bot deneme: bots) {
-                System.out.println(deneme);
+            if(players.get(playersNumber-1).getHand().isEmpty() == true){
+                System.out.println("Dealing new Cards.");
+                Deck.dealCards(playersNumber,mainDeck,players,a);
             }
 
             System.out.println("1. bot hand: ");
-            for(Card card: bots.get(0).getHand()) {
+            for(Card card: players.get(1).getHand()) {
                 System.out.println(card.cardNameString());
             }
             System.out.println("2. bot hand: ");
-            for(Card card: bots.get(1).getHand()) {
+            for(Card card: players.get(2).getHand()) {
                 System.out.println(card.cardNameString());
             }
             //writing top card on board
-            System.out.println("Number of cards on board: " + Board.getBoardCards().size());
-            System.out.println("Number of played cards: " + Board.getPlayedCards().size());
-            System.out.println("Top card on the board:");
-            System.out.println(Board.getTopCardDeck().cardNameString());
-
-
-            if(a==true){
-                Card playedcard = human.playerPlayCard();
-                board.playerPlayedCard(playedcard, human);
+            System.out.println("Board cards are:");
+            for(Card card: board.getBoardCards()) {
+                System.out.println(card.cardNameString());
             }
-            for(int i=0; i<botnumber; i++){
-                Card playedcard = bots.get(i).botPlayCard(board);
-                Board.botPlayedCard(playedcard,bots.get(i));
+            System.out.println("Played cards are:");
+            for(Card card: board.getPlayedCards()) {
+                System.out.println(card.cardNameString());
+            }
+            
+            if(board.getBoardCards().isEmpty()==true){
+                System.out.println("There are no cards on board");
+            }else {
+                System.out.println("Top card on the board:");
+            System.out.println(board.getTopCardDeck().cardNameString());
+            }
+            
+            for(int i=0; i<playersNumber; i++){
+                Card playedcard = players.get(i).PlayCard(board);
+                board.PlayedCard(playedcard,players.get(i),board);
             }
             
             

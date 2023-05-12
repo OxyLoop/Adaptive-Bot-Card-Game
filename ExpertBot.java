@@ -17,13 +17,13 @@ public class ExpertBot extends Bot {
 
 
     @Override
-    public Card botPlayCard(Board board) {
+    public Card PlayCard(Board board) {
         Card playCard = null;
 
         //check pişti
-        if(Board.getTopCardDeck() != null){
+        if(board.getTopCardDeck() != null){
             for(int i=0; i<botHand.size(); i++){
-                if(botHand.get(i).getCardFace().equals(Board.getTopCardDeck().getCardFace())){
+                if(botHand.get(i).getCardFace().equals(board.getTopCardDeck().getCardFace())){
                     playCard = botHand.get(i);
                     botHand.remove(i);
                     score = score + 10;
@@ -56,8 +56,5 @@ public class ExpertBot extends Bot {
         return botTakenCards;
     }
 
-    public String getName() {
-        return name;
-    }
     
 }
