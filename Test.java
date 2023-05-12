@@ -42,7 +42,7 @@ public class Test{
         if(a == true){
             GameSettings.nameOfPlayer();
         }
-        int botnumber = GameSettings.howManyPlayers() - 1 ;
+        int botnumber = GameSettings.howManyPlayers();
         GameSettings.botLevelChoose(bots);
 
         //dealing cards to board
@@ -81,13 +81,17 @@ public class Test{
             for(Card card: bots.get(1).getHand()) {
                 System.out.println(card.cardNameString());
             }
+            //writing top card on board
+            System.out.println(Board.getBoardCards().size());
+            System.out.println("Top card on the board:");
+            System.out.println(Board.getTopCardDeck().cardNameString());
 
 
             if(a==true){
                 Card playedcard = human.playerPlayCard();
-                Board.playerPlayedCard(playedcard, null);
+                board.playerPlayedCard(playedcard, human);
             }
-            for(int i=1; i<botnumber; i++){
+            for(int i=0; i<botnumber; i++){
                 Card playedcard = bots.get(i).botPlayCard(board);
                 Board.botPlayedCard(playedcard,bots.get(i));
             }

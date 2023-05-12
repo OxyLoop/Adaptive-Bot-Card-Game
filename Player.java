@@ -71,6 +71,7 @@ public class Player {
         int cardChoose = sc.nextInt()-1;
         Card playedCard = getPlayerHand().get(cardChoose);
         getPlayerHand().remove(cardChoose);
+        
         return playedCard;
         
     }

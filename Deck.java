@@ -63,7 +63,7 @@ public class Deck {
             Player.addCardToHand(mainDeck.getCards().get(0));
             mainDeck.getCards().remove(0);
         }
-        for(int j=0; j<botnumber+1; j++){
+        for(int j=0; j<botnumber; j++){
             bots.get(j).addCard(mainDeck.getCards().get(0));
             mainDeck.getCards().remove(0);
         }

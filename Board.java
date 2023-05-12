@@ -74,7 +74,7 @@ public class Board {
         
     }
     
-    public static void playerPlayedCard(Card playedCard, Player player) {
+    public void playerPlayedCard(Card playedCard, Player player) {
 
         //pişti yaparsa
         if(Board.getBoardCards().size() == 1 || Board.getTopCardDeck().getCardFace().equals(playedCard.getCardFace())) {
@@ -100,7 +100,7 @@ public class Board {
             removeCardsFromBoard();         
         }
         //masa boş ve eşit değilse
-        if (Board.getBoardCards().size() == 0 && !(Board.getTopCardDeck().getCardFace().equals(playedCard.getCardFace()))) {      // ! işareti not equal için
+        if (Board.getBoardCards().size() == 0 || !(Board.getTopCardDeck().getCardFace().equals(playedCard.getCardFace()))) {      // ! işareti not equal için
             addCardToBoard(playedCard);
             addPlayedCards(playedCard);
         }
