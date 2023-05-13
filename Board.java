@@ -89,5 +89,27 @@ public class Board {
             addCardToBoard(playedCard);
             addPlayedCards(playedCard);
         }
-    }  
+    } 
+    
+    public static Players getWinner(ArrayList<Players> players) {
+        int highestScore = 0;
+        int highestScorePlayerIndex = 0;
+    
+        // Find the highest score among all players
+        for (int i=0;i<players.size();i++) {
+            if (players.get(i).getScore() > highestScore) {
+                highestScore = players.get(i).getScore();
+                highestScorePlayerIndex = i; 
+            }
+        }
+        return players.get(highestScorePlayerIndex);
+
+    }
+    
+    
+    
+    
+    
+    
+    
 }

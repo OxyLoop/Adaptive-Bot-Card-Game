@@ -1,5 +1,13 @@
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Formatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -84,5 +92,52 @@ public class GameSettings {
         }
         bots.addAll(botLevelChoose);
     } 
+
+    static void saveScores(Players winner) {
+        final String filename = "highscores.txt";
+        ArrayList<String> scores = new ArrayList<String>();
+        try {
+            // Read in the existing high scores
+            Scanner input = new Scanner(new File(filename));
+            while (input.hasNextLine()) {
+                scores.add(input.nextLine());
+            }
+            input.close();
+        } catch (FileNotFoundException e) {
+            // If the highscores.txt file does not exist, create a new empty file
+            try {
+                File file = new File(filename);
+                file.createNewFile();
+            } catch (IOException ex) {
+                System.out.println("Error creating new high scores file");
+                return;
+            }
+        }
+        
+        // Add the new high score to the list
+        scores.add(winner.getName() + "," + winner.getScore() + "," + winner.getClass());
+        
+        // Sort the list of high scores
+        Collections.sort(scores, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                int score1 = Integer.parseInt(o1.split(",")[1]);
+                int score2 = Integer.parseInt(o2.split(",")[1]);
+                return score2 - score1;
+            }
+        });
+        
+        // Write the high scores back to the file
+        try {
+            Formatter output = new Formatter(new FileWriter(filename));
+            for (String score : scores) {
+                output.format(score + "\n");
+            }
+            output.close();
+        } catch (IOException e) {
+            System.out.println("Error saving high scores to file");
+        }
+    }
+
     
 }

@@ -37,4 +37,8 @@ public abstract class Players {
     public void setScore(int score){
         this.score = score;
     }
+
+    public Players[] getWinner() {
+        return null;
+    }
 }

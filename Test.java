@@ -95,6 +95,12 @@ public class Test{
         for(Players player: players) {
             System.out.println(player.getName()+ " score: " +player.getScore());
         }
+        System.out.println("--------------GAME OVER--------------");
+        Players Winner = Board.getWinner(players);
+        System.out.println(Winner.getName()+" wins the game with "+ Winner.getScore()+" score.");
+
+        GameSettings.saveScores(Winner);
+        
 
     }
 }
