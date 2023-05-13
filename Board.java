@@ -21,6 +21,9 @@ public class Board {
 
     public Card getTopCardDeck() {
         int topvalue = boardCards.size()-1; //boyutu kontrol et
+        if(boardCards.size() == 0){
+            return null;
+        }
         return boardCards.get(topvalue);
 
     }

@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GameSettings {
@@ -14,7 +15,7 @@ public class GameSettings {
             System.out.println("Do you play ?");
             System.out.println("1-Yes");
             System.out.println("2-No");
-            int answer = sc.nextInt(); //int alma fonksiyonu yaz
+            try {int answer = sc.nextInt(); //int alma fonksiyonu yaz
             if(answer==1){
                 isPlayerPlay = true;
                 break;
@@ -24,6 +25,11 @@ public class GameSettings {
             } else{
                 System.out.println("You write wrong number. Please write 1 or 2");
             }
+        } catch(java.util.InputMismatchException e){
+            System.out.println("Invalid input. Please enter a number.");
+            sc.nextLine(); 
+        }
+
         }
         return isPlayerPlay;
     }
@@ -37,13 +43,18 @@ public class GameSettings {
 
     public static int howManyBots(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("How many bots will play?");
+        System.out.println("How many bots will play between 1 to 3?");
         while(true) {
-            howManyBots = sc.nextInt();
+            try {
+                howManyBots = sc.nextInt();
             if(howManyBots == 1 || howManyBots == 2 || howManyBots == 3)
                 break;
             else
                 System.out.println("Invalid input. Please try again.");
+            } catch (InputMismatchException e){
+                System.out.println("Invalid input. Please try again.");
+                sc.nextLine();
+            }
         }
         return howManyBots;
     }

@@ -13,7 +13,8 @@ public class Deck {
     }
 
     private void creatingDeck() {
-        //loop ekle!!!!!
+        boolean a = true;
+        while(a){
             Scanner sc = new Scanner(System.in);
             System.out.println("Can you enter your file name which contains points of the cards: ");
             String nameOfFile = sc.nextLine();
@@ -23,17 +24,27 @@ public class Deck {
                 String line = scanner.nextLine();
                 String suit = line.substring(0, 1);
                 String cardFace = line.substring(1, 3).trim();
-                int point = Integer.parseInt(line.substring(3).trim());
+                String pointsString = line.substring(3).trim();
+                //default value
+                int points = 1; 
+            
+            try {
+                points = Integer.parseInt(pointsString);
+            } catch (NumberFormatException e) {
+                System.out.println("Error reading card points from file. Card points will be default");
+            }
 
-                cards.add(new Card(suit, cardFace, point));
+                cards.add(new Card(suit, cardFace, points));
             }
             scanner.close();
+            a=false;
             
         } 
         catch (IOException e) {
             System.out.println("Error reading card values from file");
         }
     }
+}   
 
     public ArrayList<Card> getCards() {
         return cards;
