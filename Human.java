@@ -33,7 +33,7 @@ public class Human extends Players {
 
     public void calculateScore() {  // calculate user score
     }
-
+    //function of human player playcard
     public Card PlayCard(Board board) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Your cards are: ");

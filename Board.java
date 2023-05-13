@@ -18,7 +18,7 @@ public class Board {
     public static void removeCardsFromBoard() {
         boardCards.clear();
     }
-
+    //returns top card on the deck
     public Card getTopCardDeck() {
         int topvalue = boardCards.size()-1; //boyutu kontrol et
         if(boardCards.size() == 0){
@@ -36,7 +36,7 @@ public class Board {
         return playedCards; 
     }
 
-    
+    //this function checks game rules for played cards
     public void PlayedCard(Card playedCard, Players players, Board board) {
 
         //pişti yaparsa
@@ -90,7 +90,7 @@ public class Board {
             addPlayedCards(playedCard);
         }
     } 
-    
+    //this function returns the winner player
     public static Players getWinner(ArrayList<Players> players) {
         int highestScore = 0;
         int highestScorePlayerIndex = 0;

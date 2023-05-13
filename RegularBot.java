@@ -9,6 +9,7 @@ public class RegularBot extends Bot {
 
     public Card PlayCard(Board board) {
         Card playedCard = null;
+        
         //check pişti
         if(board.getTopCardDeck() != null){
             for(int i=0; i<getHand().size(); i++){
@@ -19,6 +20,7 @@ public class RegularBot extends Bot {
                 }
             }
         }
+        
         //random play
         if(playedCard==null){
             Random rand = new Random();

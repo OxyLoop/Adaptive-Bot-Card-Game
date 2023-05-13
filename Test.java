@@ -12,7 +12,6 @@ public class Test{
         ArrayList<Players> players = new ArrayList<Players>();
         
 
-        System.out.println(mainDeck.getCards().size()); //test
         //shuffing and cutting
         mainDeck.shuffle();
         System.out.println("Deck is shuffled.");
@@ -40,22 +39,16 @@ public class Test{
             mainDeck.getCards().remove(0);
         }
 
-        System.out.println("Board is: ");
-        for(Card card: board.getBoardCards()) {
-            System.out.println(card.cardNameString());
-        }
-        System.out.println("Dealed board deck is: ");
-        for(Card card: mainDeck.cards) {
-            System.out.println(card.cardNameString());
-        }
+       
 
-
+        //play turns 
         while(true){
-            //dealing cards to players
+            //dealing cards to players if last player has no cards
             if(players.get(playersNumber-1).getHand().isEmpty() == true){
                 System.out.println("Dealing new Cards.");
                 Deck.dealCards(playersNumber,mainDeck,players,a);
             }
+            //this is for writing bots hand when player is watching game
             if(a!= true){
                 for(int i=0;i<playersNumber;i++){
                     System.out.println((i+1)+". bot hand: ");
@@ -78,10 +71,12 @@ public class Test{
                 Card playedcard = players.get(i).PlayCard(board);
                 board.PlayedCard(playedcard,players.get(i),board);
             }
+            //this is for commending bot turns while watching the game
             if(a!=true){
                 System.out.println("Write anything to end turn of bots");
                 sc.nextLine();   
             }
+            //end game clause
             if(board.getPlayedCards().size()==52){
                 break;
             }
@@ -89,16 +84,17 @@ public class Test{
             
             
         }
-        System.out.println("Calculating players score");
-
         //calculating players score
+        System.out.println("Calculating players score");
         for(Players player: players) {
             System.out.println(player.getName()+ " score: " +player.getScore());
         }
+        //en of game with writing winner
         System.out.println("--------------GAME OVER--------------");
         Players Winner = Board.getWinner(players);
         System.out.println(Winner.getName()+" wins the game with "+ Winner.getScore()+" score.");
 
+        //saving scores of winner clas type, name and score
         GameSettings.saveScores(Winner);
         
 

@@ -1,5 +1,4 @@
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -16,14 +15,14 @@ public class GameSettings {
     private static int howManyBots;
     private static ArrayList<Bot> botLevelChoose;
 
-
+    //asking does player play or watch the game with exeptions
     public static boolean askPlayerPlay(){
         Scanner sc = new Scanner(System.in);
         while(true){
             System.out.println("Do you play ?");
             System.out.println("1-Yes");
             System.out.println("2-No");
-            try {int answer = sc.nextInt(); //int alma fonksiyonu yaz
+            try {int answer = sc.nextInt(); 
             if(answer==1){
                 isPlayerPlay = true;
                 break;
@@ -41,14 +40,14 @@ public class GameSettings {
         }
         return isPlayerPlay;
     }
-
+    //asking if player name if player will play
     public static String nameOfPlayer(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Write your name");
         String name = sc.nextLine();
         return name;
     }
-
+    //asking players how many bots will play
     public static int howManyBots(){
         Scanner sc = new Scanner(System.in);
         System.out.println("How many bots will play between 1 to 3?");
@@ -66,7 +65,7 @@ public class GameSettings {
         }
         return howManyBots;
     }
-
+    //asking players expertise level
     public static void botLevelChoose(ArrayList<Players> bots) {
         Scanner sc = new Scanner(System.in);
         botLevelChoose = new ArrayList<>();
@@ -92,7 +91,7 @@ public class GameSettings {
         }
         bots.addAll(botLevelChoose);
     } 
-
+    //saving winners score to high score board
     static void saveScores(Players winner) {
         final String filename = "highscores.txt";
         ArrayList<String> scores = new ArrayList<String>();
@@ -104,7 +103,7 @@ public class GameSettings {
             }
             input.close();
         } catch (FileNotFoundException e) {
-            // If the highscores.txt file does not exist, create a new empty file
+            // If highscores is not exists creating new file
             try {
                 File file = new File(filename);
                 file.createNewFile();
@@ -117,9 +116,8 @@ public class GameSettings {
         // Add the new high score to the list
         scores.add(winner.getName() + "," + winner.getScore() + "," + winner.getClass());
         
-        // Sort the list of high scores
+        // Sorting the scores with using
         Collections.sort(scores, new Comparator<String>() {
-            @Override
             public int compare(String o1, String o2) {
                 int score1 = Integer.parseInt(o1.split(",")[1]);
                 int score2 = Integer.parseInt(o2.split(",")[1]);
@@ -127,7 +125,7 @@ public class GameSettings {
             }
         });
         
-        // Write the high scores back to the file
+        //writing high scores to the file at the end
         try {
             Formatter output = new Formatter(new FileWriter(filename));
             for (String score : scores) {

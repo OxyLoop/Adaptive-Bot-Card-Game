@@ -11,7 +11,7 @@ public class Deck {
         cards = new ArrayList<>();
         creatingDeck();
     }
-
+    //creating deck with using txt file
     private void creatingDeck() {
         boolean a = true;
         while(a){
@@ -53,8 +53,8 @@ public class Deck {
     public void shuffle() {
         Collections.shuffle(cards);
     }
-
-   public ArrayList<Card> cut(int startIndex) {
+    //cut function for deck
+    public ArrayList<Card> cut(int startIndex) {
         if (startIndex < 0 || startIndex >= cards.size()) {
             throw new IllegalArgumentException("Invalid start index: " + startIndex);
         }
@@ -67,7 +67,7 @@ public class Deck {
 
         return cutCards;
    }
-
+   //dealing cards
    public static void dealCards(int playerNumber, Deck mainDeck, ArrayList<Players> players, boolean a){
     for(int i=0; i<4; i++){
         for(int j=0; j<playerNumber; j++){
