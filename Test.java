@@ -80,6 +80,10 @@ public class Test{
                 Card playedcard = players.get(i).PlayCard(board);
                 board.PlayedCard(playedcard,players.get(i),board);
             }
+            //test
+            for(Players player: players) {
+                System.out.println(player.getName()+ " score: " +player.getScore());
+            }
             
             
         }

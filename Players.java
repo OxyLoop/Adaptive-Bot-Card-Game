@@ -9,6 +9,7 @@ public abstract class Players {
         this.name = name;
         this.hand = new ArrayList<Card>();
         this.takenCards = new ArrayList<Card>();
+        score = 0;
     }
     
     public String getName(){
@@ -28,8 +29,12 @@ public abstract class Players {
     public ArrayList<Card> getTakenCards(){
         return takenCards;
     }
-    // Method to get the bot's current score
+    
     public int getScore() {
         return score;
+    }
+
+    public void setScore(int score){
+        this.score = score;
     }
 }

@@ -38,17 +38,20 @@ public class Board {
 
         //pişti yaparsa
         if(board.getBoardCards().isEmpty()==true){
-            System.out.println( players.getName() +" played card and won nothing");  
+            System.out.println(players.getName() +" played " + playedCard.cardNameString());  
             addCardToBoard(playedCard);
             addPlayedCards(playedCard);
         }
         else if(board.getBoardCards().size() == 1 && board.getTopCardDeck().getCardFace().equals(playedCard.getCardFace())) {
-            System.out.println(players.getName() +" make PİŞTİ");
+            System.out.println(players.getName() +" make MİŞTİ");
             addCardToBoard(playedCard);
             addPlayedCards(playedCard);                
             players.getTakenCards().addAll(boardCards);
-            //skore ekle
-
+            int boardscore = 0;
+            for(int i=0; i<boardCards.size();i++){
+                boardscore = (boardCards.get(i).getPoints() + boardscore)* 5 ;
+            }
+            players.setScore(players.getScore()+boardscore);
             removeCardsFromBoard();             
         }
         //joker oynarsa
@@ -57,6 +60,11 @@ public class Board {
             addCardToBoard(playedCard);
             addPlayedCards(playedCard);                
             players.getTakenCards().addAll(boardCards);
+            int boardscore = 0;
+            for(int i=0; i<boardCards.size();i++){
+                boardscore = boardCards.get(i).getPoints() + boardscore;
+            }
+            players.setScore(players.getScore()+boardscore);
             removeCardsFromBoard();             
         }
         //masa dolu ve atıp aldıysa
@@ -65,6 +73,11 @@ public class Board {
             addCardToBoard(playedCard);
             addPlayedCards(playedCard);                
             players.getTakenCards().addAll(boardCards);
+            int boardscore = 0;
+            for(int i=0; i<boardCards.size();i++){
+                boardscore = boardCards.get(i).getPoints() + boardscore;
+            }
+            players.setScore(players.getScore()+boardscore);
             removeCardsFromBoard();         
         }
         //masa boş ve eşit iflerine girmediyse

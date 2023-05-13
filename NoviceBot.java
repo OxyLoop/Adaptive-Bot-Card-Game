@@ -16,11 +16,4 @@ public class NoviceBot extends Bot {
         return playedCard;
     }
 
-    
-
-    // Method to reset the bot's hand and score
-    public void reset() {
-        getHand().clear();
-        //setScore() = 0;
-    }
 }
