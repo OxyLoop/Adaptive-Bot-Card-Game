@@ -15,5 +15,4 @@ public class NoviceBot extends Bot {
         getHand().remove(chosenCard);
         return playedCard;
     }
-
 }

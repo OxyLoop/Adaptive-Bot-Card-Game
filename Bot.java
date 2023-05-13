@@ -1,7 +1,6 @@
 
 
 public abstract class Bot extends Players{
-    
 
     public Bot(String name) {
         super(name);

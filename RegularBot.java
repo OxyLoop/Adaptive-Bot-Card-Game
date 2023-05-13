@@ -42,5 +42,4 @@ public class RegularBot extends Bot {
     }
 
 
-
 }

@@ -34,8 +34,7 @@ public class ExpertBot extends Bot {
 
         //check played cards on game
 
-        
-        
+
         //random play
         if(playCard !=null){
             Random rand = new Random();

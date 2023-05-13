@@ -28,7 +28,6 @@ public class GameSettings {
         return isPlayerPlay;
     }
 
-
     public static String nameOfPlayer(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Write your name");
@@ -39,9 +38,14 @@ public class GameSettings {
     public static int howManyBots(){
         Scanner sc = new Scanner(System.in);
         System.out.println("How many bots will play?");
-        howManyBots = sc.nextInt();
+        while(true) {
+            howManyBots = sc.nextInt();
+            if(howManyBots == 1 || howManyBots == 2 || howManyBots == 3)
+                break;
+            else
+                System.out.println("Invalid input. Please try again.");
+        }
         return howManyBots;
-        
     }
 
     public static void botLevelChoose(ArrayList<Players> bots) {

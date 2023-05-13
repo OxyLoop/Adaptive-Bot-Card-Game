@@ -13,7 +13,7 @@ public class Deck {
     }
 
     private void creatingDeck() {
-        //loop ekle
+        //loop ekle!!!!!
             Scanner sc = new Scanner(System.in);
             System.out.println("Can you enter your file name which contains points of the cards: ");
             String nameOfFile = sc.nextLine();

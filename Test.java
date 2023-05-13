@@ -13,8 +13,20 @@ public class Test{
         System.out.println(mainDeck.getCards().size()); //test
         //shuffing and cutting
         mainDeck.shuffle();
-        System.out.println("Can you enter an index that you want to cut: ");
-        int cutBeginIndex = sc.nextInt();
+        int cutBeginIndex = 0;
+        boolean validInput = false;
+        while (!validInput) {
+            try {
+                System.out.println("Can you enter an index that you want to cut: ");
+                cutBeginIndex = sc.nextInt();
+                if(cutBeginIndex<0) {
+                    throw new IllegalArgumentException("Negative number is not allowed.");
+                }
+                validInput = true;
+            }catch (IllegalArgumentException exception) {
+                System.out.println("Error: " + exception.getMessage());
+            }
+        }
         mainDeck.cut(cutBeginIndex);
         
         //Asking the game settings

@@ -86,6 +86,5 @@ public class Board {
             addCardToBoard(playedCard);
             addPlayedCards(playedCard);
         }
-        
     }  
 }
